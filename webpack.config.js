@@ -34,7 +34,7 @@ var config = {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
           //'image?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}',
-          'url?limit=1000&name=images/[name].[hash:8].[ext]'
+          'url?limit=10000&name=images/[name].[hash:8].[ext]'
         ]
       },
       {
@@ -52,12 +52,23 @@ var config = {
   }
 };
 
+/* dev config */
+//if (env === 'development' || env === undefined) {
+//  config.devServer = {
+//    port: 3000,
+//    hot: true,
+//    stats: {
+//      colors: true
+//    },
+//    historyApiFallback: true
+//  };
+//}
 /* production config */
 if (env === 'production') {
   config.output = {
     path: './static/',
-        filename: '[name].[hash:8].js',
-        publicPath: '/static/'
+    filename: '[name].[hash:8].js',
+    publicPath: '/static/'
   };
   config.plugins = [
     new webpack.optimize.UglifyJsPlugin({

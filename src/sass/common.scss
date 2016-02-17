@@ -1,6 +1,9 @@
 @import "normalize.css/normalize";
 @import "./variable";
 @import "./mixin";
+/*
+ App css
+*/
 body {
   background-color: $bg_color;
 }

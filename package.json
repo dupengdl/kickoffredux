@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "lint": "eslint src",
+    "lintfix": "eslint src --fix",
     "build": "rm -rf static/ && NODE_ENV=production webpack --progress"
   },
   "repository": {
@@ -39,8 +40,11 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "classnames": "^2.2.3",
     "normalize.css": "^3.0.3",
     "react": "^0.14.6",
-    "react-dom": "^0.14.6"
+    "react-dom": "^0.14.6",
+    "react-redux": "^4.2.1",
+    "redux": "^3.2.1"
   }
 }

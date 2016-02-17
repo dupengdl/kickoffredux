@@ -59,8 +59,7 @@ var config = {
 //    hot: true,
 //    stats: {
 //      colors: true
-//    },
-//    historyApiFallback: true
+//    }
 //  };
 //}
 /* production config */

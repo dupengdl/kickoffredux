@@ -1,6 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './app/app';
-import '../sass/common.scss';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './containers/app';
+import configureStore from './store/configureStore';
+import '../sass/index.scss';
 
-ReactDOM.render(<App />, document.getElementById('example'));
+const store = configureStore();
+
+render(
+    <Provider store={store}>
+      <App />
+    </Provider>,
+    document.getElementById('container')
+);

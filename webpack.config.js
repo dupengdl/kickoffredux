@@ -1,10 +1,11 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
+var _ = require('lodash');
 var env = process.env.NODE_ENV;
 
 var config = {
-  devtool: 'eval',
+  devtool: 'inline-source-map',
   entry: {
     'index': './src/js/index.js'
   },
@@ -52,31 +53,24 @@ var config = {
   }
 };
 
-/* dev config */
-//if (env === 'development' || env === undefined) {
-//  config.devServer = {
-//    port: 3000,
-//    hot: true,
-//    stats: {
-//      colors: true
-//    }
-//  };
-//}
 /* production config */
 if (env === 'production') {
-  config.output = {
-    path: './static/',
-    filename: '[name].[chunkhash:8].js',
-    publicPath: '/static/'
-  };
-  config.plugins = [
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.NoErrorsPlugin()
-  ];
+  config = _.extend(config, {
+    devtool: '#',
+    output: {
+      path: './static/',
+      filename: '[name].[chunkhash:8].js',
+      publicPath: '/static/'
+    },
+    plugins: [
+      new webpack.optimize.UglifyJsPlugin({
+        compress: {
+          warnings: false
+        }
+      }),
+      new webpack.NoErrorsPlugin()
+    ]
+  });
 }
 
 module.exports = config;

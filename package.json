@@ -7,7 +7,7 @@
     "start": "node server.js",
     "lint": "eslint src",
     "lintfix": "eslint src --fix",
-    "build": "rm -rf static/ && NODE_ENV=production webpack --progress"
+    "build": "rm -rf static/ && NODE_ENV=production webpack --progress --config webpack.production.js"
   },
   "repository": {
     "type": "git",
@@ -30,7 +30,9 @@
     "eslint-loader": "^1.2.0",
     "eslint-plugin-react": "^3.15.0",
     "express": "^4.13.4",
+    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.8.5",
+    "html-webpack-plugin": "^2.16.0",
     "node-sass": "^3.4.2",
     "postcss-loader": "^0.8.0",
     "sass-loader": "^3.1.2",

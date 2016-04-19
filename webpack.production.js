@@ -1,18 +1,18 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var env = process.env.NODE_ENV;
 
 var config = {
-  devtool: 'inline-source-map',
+  devtool: '#',
   entry: {
     'index': './src/js/index.js',
     'vendor': ['classnames', 'react', 'react-dom', 'redux', 'react-redux']
   },
   output: {
-    path: path.join(__dirname, 'static'),
-    filename: '[name].js',
+    path: './static/',
+    filename: '[name].[chunkhash:8].js',
     publicPath: '/static/'
   },
   module: {
@@ -27,12 +27,12 @@ var config = {
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!postcss!sass'
+        loader: ExtractTextPlugin.extract('style', 'css!postcss!sass')
       },
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
-          //'image?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: "65-80"}}',
+          //'image?{bypassOnDebug: true, progressive:true, optimizationLevel: 3, pngquant:{quality: '65-80'}}',
           'url?limit=10000&name=image/[name].[hash:8].[ext]'
         ]
       },
@@ -51,26 +51,36 @@ var config = {
   },
   postcss: [autoprefixer({browsers: ['last 2 versions']})],
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['', '.js', '.jsx', '.scss']
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "vendor",//和上面配置的入口对应
-      filename: "vendor.js"//导出的文件的名称
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"'
+      }
     }),
+    new ExtractTextPlugin('css/[name].[contenthash:8].css'),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',//和上面配置的入口对应
+      filename: 'vendor.[chunkhash:8].js'//导出的文件的名称
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      filename: 'index.html',
-      inject: 'body',
+      filename: 'index.production.html',
+      inject: true,
+      minify: {    //压缩HTML文件
+        removeComments: true,    //移除HTML中的注释
+        collapseWhitespace: true    //删除空白符与换行符
+      },
       chunks: ['vendor', 'index']
     })
   ]
 };
-
-/* production config */
-if (env === 'production') {
-
-}
 
 module.exports = config;

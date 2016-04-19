@@ -7,20 +7,22 @@
 2. 学习了webpack的使用及插件配置
 3. 通过阅读部分redux的源码及官方例子,了解了单向数据流的最佳实践
 4. ES6的语法及.babelrc的配置
-```javascript
-{
-  "presets": ["react", "es2015"],
-  "env": {
-    "development": {
-      "presets": ["react-hmre"]
+
+    ```javascript
+    {
+      "presets": ["react", "es2015"],
+      "env": {
+        "development": {
+          "presets": ["react-hmre"]
+        }
+      }
     }
-  }
-}
-```
+    ```
 
 ### 环境搭建
 1. 切换到cnpm镜像: 
    在~/.zshrc或~/.bashrc加入如下配置
+
     ```javascript
     #alias for cnpm
     alias cnpm="npm --registry=https://registry.npm.taobao.org \

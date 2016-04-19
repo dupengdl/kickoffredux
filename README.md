@@ -22,15 +22,15 @@
 1. 切换到cnpm镜像: 
    在~/.zshrc或~/.bashrc加入如下配置
     ```javascript
-       #alias for cnpm
-       alias cnpm="npm --registry=https://registry.npm.taobao.org \
-       --cache=$HOME/.npm/.cache/cnpm \
-       --disturl=https://npm.taobao.org/dist \
-       --userconfig=$HOME/.cnpmrc"
+    #alias for cnpm
+    alias cnpm="npm --registry=https://registry.npm.taobao.org \
+    --cache=$HOME/.npm/.cache/cnpm \
+    --disturl=https://npm.taobao.org/dist \
+    --userconfig=$HOME/.cnpmrc"
     ```
 
 2. cnpm install -g webpack
-
+  
    cnpm install
 
 ### 命令

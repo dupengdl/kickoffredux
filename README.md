@@ -21,11 +21,13 @@
 ### 环境搭建
 1. 切换到cnpm镜像: 
    在~/.zshrc或~/.bashrc加入如下配置
-   \#alias for cnpm
+```javascript
+   #alias for cnpm
    alias cnpm="npm --registry=https://registry.npm.taobao.org \
    --cache=$HOME/.npm/.cache/cnpm \
    --disturl=https://npm.taobao.org/dist \
    --userconfig=$HOME/.cnpmrc"
+```
 2. cnpm install -g webpack
    cnpm install
 
@@ -40,7 +42,7 @@
 * varibles 全局变量
 
 ### js说明
-## 运用redux官方推荐的react分层结构
+运用redux官方推荐的react分层结构
 * `actions` action类型的定义
 * `components` 展现层组件,不关心外部数据,纯展现层
 * `constants` 常量定义,如action名称等

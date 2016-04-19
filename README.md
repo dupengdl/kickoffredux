@@ -1,4 +1,4 @@
-# Kickoffredux redux及webapck入门
+# Kickoffredux redux及webapck配置
 ### redux部分代码参考自 redux官方例子 [todomvc](https://github.com/reactjs/redux/tree/master/examples/todomvc)
 ### webapck部分运用了各种loader和plugin来了解webpack的配置
 

@@ -3,12 +3,14 @@ var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
 var host = 'localhost';
 var port = 3000;
-var hotArray = ['webpack-dev-server/client?http://'+host+':'+port, 'webpack/hot/only-dev-server'];
+var hotArray = ['webpack-dev-server/client?http://'+host+':'+port, 'webpack/hot/dev-server'];
 
 (function(entry) {
   if(entry){
     for(var i in entry){
-      entry[i] = [].concat(hotArray, entry[i]);
+      if(i != 'vendor'){
+        entry[i] = [].concat(hotArray, entry[i]);
+      }
     }
   }
 })(config.entry);
